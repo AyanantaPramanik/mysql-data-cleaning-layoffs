@@ -38,11 +38,11 @@ The cleaned table `layoffs_staging2` contains:
 
 This cleaned data is ready for downstream analytics or visualization projects.
 
+## 🧑‍💻 Author  
+**(Ayananta Pramanik)**  
+[GitHub Profile](https://github.com/AyanantaPramanik)
+
 ## 📂 File Structure
 ```bash
 sql/
 └── layoffs_data_cleaning.sql   # The SQL script for full cleaning workflow
-
-## 🧑‍💻 Author  
-**(Ayananta Pramanik)**  
-[GitHub Profile](https://github.com/AyanantaPramanik)
