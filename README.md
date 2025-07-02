@@ -42,3 +42,7 @@ This cleaned data is ready for downstream analytics or visualization projects.
 ```bash
 sql/
 └── layoffs_data_cleaning.sql   # The SQL script for full cleaning workflow
+
+## 🧑‍💻 Author  
+**(Ayananta Pramanik)**  
+[GitHub Profile](https://github.com/AyanantaPramanik)
