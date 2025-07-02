@@ -1,48 +1,80 @@
-# Layoffs Data Cleaning with MySQL
+# Layoffs Data Cleaning and EDA with MySQL
 
-## 🧹 Project Overview
+## 📌 Project Overview
 
-This project focuses on data cleaning techniques using MySQL. The raw dataset containing information about tech layoffs was cleaned and standardized to prepare it for analysis.
+This project showcases a full data pipeline using SQL in MySQL Workbench:  
+1. **Data Cleaning:** Standardizing and preparing raw layoffs data.  
+2. **Exploratory Data Analysis (EDA):** Deriving key insights and trends from the cleaned data.
 
-The operations include:
-- Removing duplicates
-- Standardizing text fields
-- Handling NULL and blank values
-- Formatting date and numeric fields
-- Dropping unnecessary columns
+The dataset consists of information about tech layoffs globally — including companies, industries, countries, funding stages, dates, and numbers of employees laid off.
 
-## 🛠️ Tools & Technologies
-- MySQL Workbench
-- SQL (CTEs, Window Functions, String Functions, Date Functions)
+---
 
-## 📁 Dataset
-The dataset used contains layoffs data from various companies, including fields such as:
-- Company, Location, Industry
-- Number of Employees Laid Off
-- Date, Stage, Country
-- Funds Raised
+## 🧹 Part 1: Data Cleaning
 
-*Note: Data source anonymized for public sharing.*
+**Goal:** Prepare raw data for analysis by removing inconsistencies, duplicates, blanks, and formatting issues.
 
-## 🧠 Key Techniques Used
-- `ROW_NUMBER()` for duplicate identification
-- `TRIM()`, `FORMAT()`, `STR_TO_DATE()` for standardization
-- `UPDATE`, `JOIN`, and `DELETE` for cleaning operations
-- Schema restructuring using `ALTER TABLE`
+### ✅ Key Cleaning Steps
+- Removed duplicates using `ROW_NUMBER()` in a CTE
+- Trimmed whitespace and standardized company & country names
+- Converted string dates into `DATE` format using `STR_TO_DATE()`
+- Removed rows with NULL/blank values in key columns
+- Dropped unnecessary columns and created new formatted fields
+- Re-structured table `layoffs_staging2` to hold cleaned data
 
-## 📊 Output
-The cleaned table `layoffs_staging2` contains:
-- Accurate and standardized records
-- No NULLs or blanks in critical fields
-- Consistent formatting for dates and numeric values
+### 🛠️ Techniques Used
+- CTEs
+- `ROW_NUMBER()`, `TRIM()`, `FORMAT()`, `STR_TO_DATE()`
+- `UPDATE`, `DELETE`, `ALTER TABLE`
+- Conditional joins to fill missing values
 
-This cleaned data is ready for downstream analytics or visualization projects.
+---
+
+## 📊 Part 2: Exploratory Data Analysis (EDA)
+
+**Goal:** Explore patterns and trends in layoffs data using SQL.
+
+### 🔍 Key Questions Explored
+- Which companies laid off the most employees?
+- Which industries and countries were most affected?
+- How have layoffs changed over time?
+- What stages of funding are most associated with layoffs?
+- Who were the top 5 companies with the most layoffs each year?
+
+### 📌 Key Insights
+- 📈 Layoffs peaked in late 2022 and early 2023
+- 🌍 USA and India were the most affected countries
+- 🏢 Google, Meta, and Amazon had some of the highest layoffs
+- 🧠 Most layoffs occurred in "Post-IPO" and "Series C" funding stages
+- 📆 Monthly rolling totals showed rising trends through pandemic years
+
+### 🛠️ Techniques Used
+- Aggregations with `GROUP BY`, `SUM()`
+- Time-based queries using `YEAR()`, `SUBSTRING()`
+- `DENSE_RANK()` to rank top companies per year
+- Rolling total using `SUM() OVER(ORDER BY Month)`
+- CTEs for advanced grouping and filtering
+
+---
+
+## 🗃️ Dataset
+
+A cleaned layoffs dataset originally containing fields like:
+- `Company`, `Location`, `Industry`, `Total Laid Off`, `Percentage Laid Off`
+- `Date`, `Stage`, `Country`, `Funds Raised`
+
+*Note: Source anonymized for public sharing.*
 
 ## 🧑‍💻 Author  
 **(Ayananta Pramanik)**  
 [GitHub Profile](https://github.com/AyanantaPramanik)
 
-## 📂 File Structure
+
+---
+
+## 📁 File Structure
+
 ```bash
 sql/
-└── layoffs_data_cleaning.sql   # The SQL script for full cleaning workflow
+├── layoffs_data_cleaning.sql   # Data cleaning workflow
+└── layoffs_eda.sql             # EDA queries and insights
